@@ -1,37 +1,68 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
   <div class="c-sidebar-brand d-lg-down-none">
-    <a class="c-sidebar-nav-link" href="{{ route('home') }}" title="{{ __('Back to Mainpage') }}">
-      <i class="bi-columns-gap" style="font-size:1.5rem;color:grey;width:32px;"></i> 1. Pfälzer Rassezuchtverein e.V.
+    <a class="" href="{{ route('home') }}" title="{{ __('Back to Mainpage') }}">
+      <i class="bi-layout-wtf" style="font-size:1.5rem;color:grey;width:32px;"></i>
     </a>
   </div>
   <ul class="c-sidebar-nav">
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="index.html">
-          <i class="bi-arrow-bar-left" style="font-size:1.5rem;color:grey;width:32px;"></i>Dashboard
-          <!--<span class="badge badge-info">NEW</span>-->
+        <i class="bi-clipboard-data" style="font-size:1.5rem;color:grey;width:32px;"></i>Dashboard
+        <!--<span class="badge badge-info">NEW</span>-->
       </a>
     </li>
     <li class="c-sidebar-nav-title">Admin</li>
+
+
+    @foreach (\App\Models\ChecklistGroup::with('checklists')->get() as $group)
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+      <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle"
+        href="{{ route('admin.checklist_groups.edit', $group->id)}}">
+        <i class="bi-list-check" style="font-size:1.2rem;color:grey;width:32px;"></i>{{$group->name}}
+      </a>
+      <ul class="c-sidebar-nav-dropdown-items">
+        @foreach ($group->checklists as $checklist)
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link"
+            href="{{ route('admin.checklist_groups.checklists.edit', [$group, $checklist])}}">
+            <span class="c-sidebar-nav-icon"></span> {{$checklist->name}}
+          </a>
+        </li>
+        @endforeach
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link"
+            href="{{ route('admin.checklist_groups.edit', $group->id)}}">
+            <span class="c-sidebar-nav-icon"></span> {{__('Edit Group')}}
+          </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link"
+            href="{{ route('admin.checklist_groups.checklists.create', $group)}}">
+            <span class="c-sidebar-nav-icon"></span> {{__('Add Checklist')}}
+          </a>
+        </li>
+      </ul>
+    </li>
+    @endforeach
+    <li>
       <a class="c-sidebar-nav-link"
-        href="{{ route('admin.pages.index')}}">
+        href="{{ route('admin.checklist_groups.create') }}">{{ __('Create Checklist')}}</a>
+    </li>
+    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+      <a class="c-sidebar-nav-link" href="{{ route('admin.pages.index')}}">
         <i class="bi-layout-text-window-reverse" style="font-size:1.2rem;color:grey;width:32px;"></i>Sites
       </a>
+    </li>
+    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+      <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+        </svg> Base</a>
       <ul class="c-sidebar-nav-dropdown-items">
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/tooltips.html"><span class="c-sidebar-nav-icon"></span> Tooltips</a></li>
       </ul>
     </li>
-      <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-          <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-            <svg class="c-sidebar-nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
-            </svg> Base</a>
-          <ul class="c-sidebar-nav-dropdown-items">
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/tooltips.html"><span class="c-sidebar-nav-icon"></span> Tooltips</a></li>
-          </ul>
-        </li>
     <li class="c-sidebar-nav-divider"></li>
     <li class="c-sidebar-nav-title">Extras</li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
@@ -47,14 +78,13 @@
             </svg> Login</a>
         </li>
         <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="{{ route('logout') }}"
-          onclick="event.preventDefault();
+          <a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
             <!--<span class="badge badge-info">NEW</span>-->
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
+            @csrf
           </form>
         </li>
         <li class="c-sidebar-nav-item">
