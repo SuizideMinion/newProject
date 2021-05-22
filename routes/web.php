@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('checklist_groups', \App\Http\Controllers\Admin\ChecklistGroupController::class);
         Route::resource('checklist_groups.checklists', \App\Http\Controllers\Admin\ChecklistController::class);
         Route::resource('checklists.tasks', \App\Http\Controllers\Admin\TaskController::class);
+        Route::resource('users', \App\Http\Controllers\Admin\users\UserController::class);
         // Route::resource('checklists.tasks', \App\Http\Controllers\Admin\TaskController::class);
         // Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
         // Route::post('images', [\App\Http\Controllers\Admin\ImageController::class, 'store'])->name('images.store');

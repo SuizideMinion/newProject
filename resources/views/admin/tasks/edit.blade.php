@@ -12,7 +12,8 @@
       </div>
       @endif
       <form action="{{ route('admin.checklists.tasks.update', [$checklist, $task]) }}" method="POST">
-        @csrf @method('PUT')
+        @csrf
+        @method('PUT')
         <div class="card-header">{{ __('Edit Task') }}</div>
 
         <div class="card-body">
