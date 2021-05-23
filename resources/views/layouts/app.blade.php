@@ -59,47 +59,27 @@
           <div class="dropdown-menu dropdown-menu-right pt-0">
             <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-              </svg> Updates<span class="badge badge-info ml-auto">42</span></a>
+              <i class="bi-bell" style="font-size:1.2rem;color:grey;width:32px;"></i> Updates<span class="badge badge-info ml-auto">42</span></a>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-              </svg> Messages<span class="badge badge-success ml-auto">42</span></a>
+              <i class="bi-envelope" style="font-size:1.2rem;color:grey;width:32px;"></i> Messages<span class="badge badge-success ml-auto">42</span></a>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-              </svg> Tasks<span class="badge badge-danger ml-auto">42</span></a>
+              <i class="bi-list-check" style="font-size:1.2rem;color:grey;width:32px;"></i> Tasks<span class="badge badge-danger ml-auto">42</span></a>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
-              </svg> Comments<span class="badge badge-warning ml-auto">42</span></a>
+              <i class="bi-chat-right" style="font-size:1.2rem;color:grey;width:32px;"></i> Comments<span class="badge badge-warning ml-auto">42</span></a>
             <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-              </svg> Profile</a>
+              <i class="bi-person" style="font-size:1.2rem;color:grey;width:32px;"></i> Profile</a>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-              </svg> Settings</a>
+              <i class="bi-gear" style="font-size:1.2rem;color:grey;width:32px;"></i> Settings</a>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-              </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a>
+              <i class="bi-credit-card" style="font-size:1.2rem;color:grey;width:32px;"></i> Payments<span class="badge badge-secondary ml-auto">42</span></a>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-              </svg> Projects<span class="badge badge-primary ml-auto">42</span></a>
+              <i class="bi-file-earmark-text" style="font-size:1.2rem;color:grey;width:32px;"></i> Projects<span class="badge badge-primary ml-auto">42</span></a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-              </svg> Lock Account</a>
+              <i class="bi-lock" style="font-size:1.2rem;color:grey;width:32px;"></i> Lock Account</a>
             <a class="dropdown-item" href="#">
-              <svg class="c-icon mr-2">
-                <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-              </svg> Logout</a>
+              <i class="bi-door-closed" style="font-size:1.2rem;color:grey;width:32px;"></i> Logout</a>
           </div>
         </li>
       <!-- </ul>
@@ -125,6 +105,7 @@
         <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
         @livewireScripts
         <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
 </body>
 

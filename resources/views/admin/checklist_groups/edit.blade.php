@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-sm btn-primary" type="submit"> {{ __('Save')}}</button>
+          <button class="btn btn-sm btn-primary" type="submit"> {{ __('Save')}}</button></form>
           <button class="btn btn-sm btn-danger" type="reset"> {{ __('Reset') }}</button>
           <form action="{{ route('admin.checklist_groups.destroy', $checklistGroup) }}" method="POST">
             @csrf
@@ -38,7 +38,7 @@
               onclick="return confirm('{{ __('Are you Sure') }}')"> {{ __('Delete this Checklist Group')}}</button>
           </form>
         </div>
-      </form>
+
     </div>
   </div>
 </div>

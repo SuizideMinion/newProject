@@ -44,43 +44,38 @@
       </ul>
     </li>
     @endforeach
-    <li>
-      <a class="c-sidebar-nav-link"
-        href="{{ route('admin.checklist_groups.create') }}">{{ __('Create Checklist')}}</a>
-    </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
       <a class="c-sidebar-nav-link" href="{{ route('admin.pages.index')}}">
         <i class="bi-layout-text-window-reverse" style="font-size:1.2rem;color:grey;width:32px;"></i>Sites
       </a>
     </li>
-    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
-      <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-        <svg class="c-sidebar-nav-icon">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
-        </svg> Base</a>
-      <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/tooltips.html"><span class="c-sidebar-nav-icon"></span> Tooltips</a></li>
-      </ul>
-    </li>
+
     <li class="c-sidebar-nav-divider"></li>
     <li class="c-sidebar-nav-title">Extras</li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
       <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-        <svg class="c-sidebar-nav-icon">
-          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-star"></use>
-        </svg> Pages</a>
+        <i class="bi-puzzle" style="font-size:1.2rem;color:grey;width:32px;"></i> Base</a>
+      <ul class="c-sidebar-nav-dropdown-items">
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/tooltips.html"><span class="c-sidebar-nav-icon"></span> Tooltips</a></li>
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link"
+            href="{{ route('admin.checklist_groups.create') }}"><span class="c-sidebar-nav-icon"></span>{{ __('Create Checklist')}}</a>
+        </li>
+      </ul>
+    </li>
+    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+      <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+        <i class="bi-star" style="font-size:1.2rem;color:grey;width:32px;"></i> Pages</a>
       <ul class="c-sidebar-nav-dropdown-items">
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link" href="login.html" target="_top">
-            <svg class="c-sidebar-nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-            </svg> Login</a>
+            <i class="bi-door-open" style="font-size:1.2rem;color:grey;width:32px;"></i> Login</a>
         </li>
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
+            <i class="bi-door-closed" style="font-size:1.2rem;color:grey;width:32px;"></i>{{ __('Logout') }}
             <!--<span class="badge badge-info">NEW</span>-->
           </a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -89,15 +84,11 @@
         </li>
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link" href="404.html" target="_top">
-            <svg class="c-sidebar-nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
-            </svg> Error 404</a>
+            <i class="bi-bug" style="font-size:1.2rem;color:grey;width:32px;"></i> Error 404</a>
         </li>
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link" href="500.html" target="_top">
-            <svg class="c-sidebar-nav-icon">
-              <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
-            </svg> Error 500</a>
+            <i class="bi-bug" style="font-size:1.2rem;color:grey;width:32px;"></i> Error 500</a>
         </li>
       </ul>
     <!-- </li>

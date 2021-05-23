@@ -2,67 +2,52 @@
 <div class="container-fluid">
   <div class="fade-in">
     <div class="card">
-      <ul wire:sortable="updateTaskOrder">
+      <div class="card-header">Users</div>
+      <div class="card-body">
+        <ul class="group" wire:sortable="updateTaskOrder"  style="padding-left: 20px;padding-right: 20px;padding-top: 20px;">
           @foreach ($users as $user)
-              <li style="
-                margin-top: 20px;
-                display:flex;" wire:sortable.item="{{ $user->user_id }}" wire:key="task-{{ $user->user_id }}">
-                <div style="
-                  border-width: 1px;
-                  height:25px;
-                  width:30px;
-                  border-color:lightblue;
-                  border-top-style: solid;
-                  border-bottom-style: solid;
-                  border-left-style: solid;
-                  border-top-left-radius:10px;
-                  border-bottom-left-radius: 10px;
-                  ">
-                  <!-- <i class="bi-list" style="font-size: 15px;color:green;"></i> -->
-                </div>
-                <div style="
-                  border-width: 1px;
-                  height:25px;
-                  width:30%;
-                  border-color:lightblue;
-                  border-top-style: solid;
-                  border-bottom-style: solid;
-                  ">
-                    {{ $user->name }}
-                </div>
-                <div style="
-                  border-width: 1px;
-                  width:30%;
-                  height:25px;
-                  border-color:lightblue;
-                  border-top-style: solid;
-                  border-bottom-style: solid;
-                  ">{{ $user->email }}</div>
-                <div style="
-                  display:flex;
-                  border-width: 1px;
-                  height:25px;
-                  width:30%;
-                  border-color:lightblue;
-                  border-top-style: solid;
-                  border-bottom-style: solid;
-                  border-right-style: solid;
-                  border-top-right-radius:10px;
-                  border-bottom-right-radius: 10px;
-                  "><!--<a style="margin-left: auto!important;" href="#{{ $user->user_id }}" data-toggle="collapse" data-target="#{{ $user->user_id }}">
-                     <i class="bi-pencil" style="font-size: 15px;color:green;"></i>
-                  </a><form action="" method="POST">
+          @if($user->is_admin)
+              <li
+                class="list-group-item d-flex list-group-item-action justify-content-between align-items-center list-group-item-danger"
+                wire:sortable.item="{{ $user->user_id }}"
+                wire:key="task-{{ $user->user_id }}"
+              >
+          @else
+              <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center list-group-item-success"
+                wire:sortable.item="{{ $user->user_id }}"
+                wire:key="task-{{ $user->user_id }}"
+              >
+          @endif
+                {{ $user->name }} | {{ $user->email }}
+                <span style="display:flex">
+                  <a style="margin-left: auto!important;" href="" data-toggle="collapse" data-target="">
+                    <i class="bi-pencil" style="font-size: 15px;color:green;"></i>
+                  </a>
+                  <form action="" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button style="padding-top: 0px;padding-bottom: 0px;" class="btn btn-text" type="submit">
+                    <button style="padding: 0px;margin-left:10px;" class="btn btn-text" type="submit">
                       <i class="bi-trash" style="font-size: 15px;color:red;"></i>
                     </button>
-                  </form> -->
-                </div>
+                  </form>
+                </span>
               </li>
           @endforeach
       </ul>
+    </div>
+    <div class="card-footer">
+      <ul class="pagination">
+        <? $i = 0 ?>
+        @foreach($arrays as $arr)
+          @if($arr == '0')
 
+          @else
+            <li class="page-item"><a class="page-link" href="/admin/users/{{ $array[$i] }}">{{ $array[$i] }}<br>{{ $arr }}</a></li>
+          @endif
+
+        <? $i++ ?>
+        @endforeach
+      </ul>
     </div>
   </div>
 </div>

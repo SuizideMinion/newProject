@@ -21,6 +21,9 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('getsite/{seitenid}', [App\Http\Controllers\ShowPage::class, "showmarkdown"])->name("das_ist_test");
+
+
 Route::group(['middleware' => 'auth'], function () {
     //////////////7 Logged in Area
 

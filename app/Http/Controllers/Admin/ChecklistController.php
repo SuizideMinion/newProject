@@ -9,6 +9,9 @@ use App\Models\Checklist;
 use App\Models\ChecklistGroup;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ChecklistController extends Controller
 {
@@ -17,50 +20,28 @@ class ChecklistController extends Controller
          return view('admin.checklists.create', compact('checklistGroup'));
      }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
      public function store(StoreChecklistRequest $request, ChecklistGroup $checklistGroup): RedirectResponse
      {
+       // dd($checklistGroup->name);
+        DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine neue Checklist Erstellt " . $checklistGroup->name . " -> " . $request->validated()['name'] . "",'owner' => Auth::id()));
          $checklistGroup->checklists()->create($request->validated());
 
          return redirect()->route('home');
      }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
      public function edit(ChecklistGroup $checklistGroup, Checklist $checklist): View
      {
          return view('admin.checklists.edit', compact('checklistGroup', 'checklist'));
      }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
      public function update(StoreChecklistRequest $request, ChecklistGroup $checklistGroup, Checklist $checklist): RedirectResponse
      {
+        DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine Checklist Umbennant " . $checklist->name . " -> " . $request->validated()['name'] . "",'owner' => Auth::id()));
          $checklist->update($request->validated());
 
          return redirect()->route('home');
@@ -69,6 +50,7 @@ class ChecklistController extends Controller
      public function destroy(ChecklistGroup $checklistGroup, Checklist $checklist): RedirectResponse
      {
          $checklist->delete();
+         DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine Checklist Gelöscht " . $checklistGroup->name . " -> " . $checklist->name . "",'owner' => Auth::id()));
 
          return redirect()->route('home');
      }
