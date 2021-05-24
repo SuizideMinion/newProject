@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('content')
+@extends('admin.layouts.app')
+@section('content')
 <div class="container-fluid">
   <div class="fade-in">
     <div class="card">
@@ -23,13 +24,28 @@
                   <a style="margin-left: auto!important;" href="" data-toggle="collapse" data-target="">
                     <i class="bi-pencil" style="font-size: 15px;color:green;"></i>
                   </a>
-                  <form action="" method="POST">
+                  @if($user->closed)
+                    @if($user->reason=='0')
+                      <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="text" name="reason" placeholder="Begründung?">
+                        <button style="padding: 0px;margin-left:10px;" class="btn btn-text" type="submit">
+                          <i class="bi-check" style="font-size: 15px;color:red;"></i>
+                        </button>
+                      </form>
+                    @else
+                    Gesperrt wegen: {{ $user->reason }}
+                  @endif
+                  @else
+                  <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button style="padding: 0px;margin-left:10px;" class="btn btn-text" type="submit">
-                      <i class="bi-trash" style="font-size: 15px;color:red;"></i>
+                      <i class="bi-lock" style="font-size: 15px;color:red;"></i>
                     </button>
                   </form>
+                  @endif
                 </span>
               </li>
           @endforeach

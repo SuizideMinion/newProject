@@ -22,13 +22,13 @@ Route::get('/', function () {
 });
 
 Route::get('getsite/{seitenid}', [App\Http\Controllers\ShowPage::class, "showmarkdown"])->name("das_ist_test");
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::group(['middleware' => 'auth'], function () {
     //////////////7 Logged in Area
 
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => '\App\Http\Middleware\IsAdmin::class'], function () {
         //////////////// Admin Area
 
@@ -38,8 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('checklist_groups.checklists', \App\Http\Controllers\Admin\ChecklistController::class);
         Route::resource('checklists.tasks', \App\Http\Controllers\Admin\TaskController::class);
         Route::resource('users', \App\Http\Controllers\Admin\users\UserController::class);
-        // Route::resource('checklists.tasks', \App\Http\Controllers\Admin\TaskController::class);
-        // Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
-        // Route::post('images', [\App\Http\Controllers\Admin\ImageController::class, 'store'])->name('images.store');
+        Route::resource('logfiles/{offset}', \App\Http\Controllers\Admin\LogController::class)->where('offset', '[0-9]+?');
     });
 });

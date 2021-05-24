@@ -9,6 +9,6 @@ class User extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['name', 'email', 'created_at', 'updated_at', 'is_admin'];
+  protected $fillable = ['name', 'email', 'created_at', 'updated_at', 'is_admin', 'closed', 'reason'];
 
 }

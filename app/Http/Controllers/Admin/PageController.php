@@ -42,7 +42,7 @@ class PageController extends Controller
             $page->md5id = $md5id;
             $page->owner = Auth::id();
             $page->save();
-            DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine neue Page Erstellt " . $request->name . "",'owner' => Auth::id()));
+            DB::table('logs')->insert(array ('category' => 'page', 'created_at' => Carbon::now(), 'text' => "Hat eine neue Page Erstellt " . $request->name . "",'owner' => Auth::id()));
             return redirect('/admin/pages');
           } else {
             goto up;
@@ -102,13 +102,13 @@ class PageController extends Controller
 
         $pages = Page::all();
 
-        DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine Page Bearbeitet ->" . $page->name,'owner' => Auth::id()));
+        DB::table('logs')->insert(array ('category' => 'page', 'created_at' => Carbon::now(), 'text' => "Hat eine Page Bearbeitet ->" . $page->name,'owner' => Auth::id()));
         return view('admin.page.index', compact('pages'));
     }
 
     public function destroy(Page $page): View
     {
-        DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine Page Gelöscht ->" . $page->name,'owner' => Auth::id()));
+        DB::table('logs')->insert(array ('category' => 'page', 'created_at' => Carbon::now(), 'text' => "Hat eine Page Gelöscht ->" . $page->name,'owner' => Auth::id()));
         $page->delete();
 
         $pages = Page::all();

@@ -16,44 +16,49 @@
 </head>
 
 <body class="c-app">
-
+  @include('admin.layouts.sidebar')
 
   <div class="c-wrapper c-fixed-components">
     <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-
-      <ul class="c-header-nav ">
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="mail://info@1pvr.de"><i class="bi-envelope" style="font-size:1.5rem;color:green;width:32px;"></i> info@1pvr.de</a></li>
+      <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+        <i class="bi-list" style="font-size:1.2rem;color:grey;width:32px;"></i>
+      </button>
+      <!-- <a class="c-header-brand d-lg-none" href="#">
+        <svg width="118" height="46" alt="CoreUI Logo">
+          <use xlink:href="assets/brand/coreui.svg#full"></use>
+        </svg>
+      </a> -->
+      <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+        <i class="bi-list" style="font-size:1.2rem;color:grey;width:32px;"></i>
+      </button>
+      <ul class="c-header-nav d-md-down-none">
+        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#"><i class="bi-clipboard-data" style="font-size:1.5rem;color:grey;width:32px;"></i> Dashboard</a></li>
+        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="/admin/users"><i class="bi-people" style="font-size:1.2rem;color:grey;width:32px;"></i> Users</a></li>
+        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#"><i class="bi-gear" style="font-size:1.5rem;color:grey;width:32px;"></i> Settings</a></li>
       </ul>
       <ul class="c-header-nav ml-auto mr-4">
-        <li class="c-header-nav-item  mx-2">
+        <li class="c-header-nav-item d-md-down-none mx-2">
           <a class="c-header-nav-link" href="#">
-            <i class="bi-facebook" style="font-size:1.2rem;color:grey;width:32px;"></i>
+            <i class="bi-bell" style="font-size:1.2rem;color:grey;width:32px;"></i>
           </a>
         </li>
-        <li class="c-header-nav-item  mx-2">
+        <li class="c-header-nav-item d-md-down-none mx-2">
           <a class="c-header-nav-link" href="#">
-            <i class="bi-instagram" style="font-size:1.2rem;color:grey;width:32px;"></i>
+            <i class="bi-menu-up" style="font-size:1.2rem;color:grey;width:32px;"></i>
           </a>
         </li>
-        <li class="c-header-nav-item  mx-2">
+        <li class="c-header-nav-item d-md-down-none mx-2">
           <a class="c-header-nav-link" href="#">
-            <i class="bi-twitter" style="font-size:1.2rem;color:grey;width:32px;"></i>
+            <i class="bi-envelope-open" style="font-size:1.2rem;color:grey;width:32px;"></i>
           </a>
         </li>
-        @guest
-        @if (Route::has('login'))
-        <li class=""><a href="{{ route('login') }}" style="color:#64be43;font-weight:bold;font-size: medium;margin-left: 15px;">{{ __('Login') }}</a></li>
-        <li class=""><a href="{{ route('register') }}" style="color:#64be43;font-weight:bold;font-size: medium;margin-left: 15px;">{{ __('Registrieren') }}</a></li>
-        @endif
-        @else
-
         <li class="c-header-nav-item dropdown">
           <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
             <div class="c-avatar"><img class="c-avatar-img" src="/img/no_img.png" alt="user@email.com"></div>
           </a>
           <div class="dropdown-menu dropdown-menu-right pt-0">
             <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
-            <!-- <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="#">
               <i class="bi-bell" style="font-size:1.2rem;color:grey;width:32px;"></i> Updates<span class="badge badge-info ml-auto">42</span></a>
             <a class="dropdown-item" href="#">
               <i class="bi-envelope" style="font-size:1.2rem;color:grey;width:32px;"></i> Messages<span class="badge badge-success ml-auto">42</span></a>
@@ -72,45 +77,25 @@
               <i class="bi-file-earmark-text" style="font-size:1.2rem;color:grey;width:32px;"></i> Projects<span class="badge badge-primary ml-auto">42</span></a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
-              <i class="bi-lock" style="font-size:1.2rem;color:grey;width:32px;"></i> Lock Account</a> -->
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-                <i class="bi-door-closed" style="font-size:1.2rem;color:grey;width:32px;"></i>{{ __('Logout') }}
-              </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-              </form>
-            @if(Auth::user()->is_admin)
-            <div class="dropdown-header bg-light py-2"><strong>Administrator</strong></div>
-            <a class="dropdown-item" href="/admin/pages">
-              <i class="bi-person" style="font-size:1.2rem;color:grey;width:32px;"></i> Admin Page
-            </a>
-            @endif
+              <i class="bi-lock" style="font-size:1.2rem;color:grey;width:32px;"></i> Lock Account</a>
+            <a class="dropdown-item" href="#">
+              <i class="bi-door-closed" style="font-size:1.2rem;color:grey;width:32px;"></i> Logout</a>
           </div>
         </li>
-        @endguest
-      </ul>
-      <div class="c-subheader px-3" style="background-color: #64be43;color:white">
+      <!-- </ul>
+      <div class="c-subheader px-3">
 
-        <ol class="breadcrumb border-0" style="margin:auto;">
-          <li class=""><a href="/" style="color:white;font-weight:bold;font-size: medium;">HOME</a></li>
-          <li class=""><a href="#" style="color:white;font-weight:bold;font-size: medium;margin-left: 15px;">ADMIN</a></li>
+        <ol class="breadcrumb border-0 m-0">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item"><a href="#">Admin</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
 
-          <li class="c-header-nav-item dropdown">
-            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;font-weight:bold;font-size: medium;margin-left: 15px;">
-              ÜBER UNS
-            </a>
-            <div class="dropdown-menu dropdown-menu-right pt-0">
-              <a class="dropdown-item" href="/getsite/impressum">Impressum</a>
-              <a class="dropdown-item" href="/getsite/test">Test</a>
-            </div>
-          </li>
         </ol>
-      </div>
+      </div> -->
     </header>
 
     <div class="c-body">
-      <main class="c-main" style="padding-top: 0px;">
+      <main class="c-main">
         @yield('content')
 
         <!-- Optional JavaScript -->

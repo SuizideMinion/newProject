@@ -23,7 +23,10 @@ class ChecklistController extends Controller
      public function store(StoreChecklistRequest $request, ChecklistGroup $checklistGroup): RedirectResponse
      {
        // dd($checklistGroup->name);
-        DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine neue Checklist Erstellt " . $checklistGroup->name . " -> " . $request->validated()['name'] . "",'owner' => Auth::id()));
+        DB::table('logs')->insert(array ('category' => 'check',
+                                        'created_at' => Carbon::now(),
+                                        'text' => "Hat eine neue Checklist Erstellt " . $checklistGroup->name . " -> " . $request->validated()['name'] . "",
+                                        'owner' => Auth::id()));
          $checklistGroup->checklists()->create($request->validated());
 
          return redirect()->route('home');
@@ -41,7 +44,7 @@ class ChecklistController extends Controller
 
      public function update(StoreChecklistRequest $request, ChecklistGroup $checklistGroup, Checklist $checklist): RedirectResponse
      {
-        DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine Checklist Umbennant " . $checklist->name . " -> " . $request->validated()['name'] . "",'owner' => Auth::id()));
+        DB::table('logs')->insert(array ('category' => 'check','created_at' => Carbon::now(), 'text' => "Hat eine Checklist Umbennant " . $checklist->name . " -> " . $request->validated()['name'] . "",'owner' => Auth::id()));
          $checklist->update($request->validated());
 
          return redirect()->route('home');
@@ -50,7 +53,7 @@ class ChecklistController extends Controller
      public function destroy(ChecklistGroup $checklistGroup, Checklist $checklist): RedirectResponse
      {
          $checklist->delete();
-         DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine Checklist Gelöscht " . $checklistGroup->name . " -> " . $checklist->name . "",'owner' => Auth::id()));
+         DB::table('logs')->insert(array ('category' => 'check','created_at' => Carbon::now(), 'text' => "Hat eine Checklist Gelöscht " . $checklistGroup->name . " -> " . $checklist->name . "",'owner' => Auth::id()));
 
          return redirect()->route('home');
      }

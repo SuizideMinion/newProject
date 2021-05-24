@@ -23,7 +23,7 @@ class ChecklistGroupController extends Controller
      public function store(StoreChecklistGroupRequest $request): RedirectResponse
      {
        ChecklistGroup::create($request->validated());
-       DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine neue ChecklistGroup Erstellt " . $request->validated()['name'] . "",'owner' => Auth::id()));
+       DB::table('logs')->insert(array ('category' => 'chegr','created_at' => Carbon::now(), 'text' => "Hat eine neue ChecklistGroup Erstellt " . $request->validated()['name'] . "",'owner' => Auth::id()));
 
        return redirect()->route('home');
      }
@@ -35,7 +35,7 @@ class ChecklistGroupController extends Controller
 
      public function update(UpdateChecklistGroupRequest $request, ChecklistGroup $checklistGroup): RedirectResponse
      {
-        DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine ChecklistGroup Umbennant " . $checklistGroup->name . " -> " . $request->validated()['name'] . "",'owner' => Auth::id()));
+        DB::table('logs')->insert(array ('category' => 'chegr', 'created_at' => Carbon::now(), 'text' => "Hat eine ChecklistGroup Umbennant " . $checklistGroup->name . " -> " . $request->validated()['name'] . "",'owner' => Auth::id()));
          $checklistGroup->update($request->validated());
 
          return redirect()->route('home');
@@ -44,7 +44,7 @@ class ChecklistGroupController extends Controller
      public function destroy(ChecklistGroup $checklistGroup): RedirectResponse
      {
          $checklistGroup->delete();
-         DB::table('logs')->insert(array ('created_at' => Carbon::now(), 'text' => "Hat eine ChecklistGroup Gelöscht " . $checklistGroup->name . "",'owner' => Auth::id()));
+         DB::table('logs')->insert(array ('category' => 'chegr', 'created_at' => Carbon::now(), 'text' => "Hat eine ChecklistGroup Gelöscht " . $checklistGroup->name . "",'owner' => Auth::id()));
 
          return redirect()->route('home');
      }

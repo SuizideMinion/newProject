@@ -7,7 +7,7 @@
   <ul class="c-sidebar-nav">
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="index.html">
-        <i class="bi-clipboard-data" style="font-size:1.5rem;color:grey;width:32px;"></i>Dashboard
+        <i class="bi-clipboard-data" style="margin-right: 20px;font-size:1.5rem;color:grey;width:32px;"></i>Dashboard
         <!--<span class="badge badge-info">NEW</span>-->
       </a>
     </li>
@@ -18,7 +18,7 @@
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
       <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle"
         href="{{ route('admin.checklist_groups.edit', $group->id)}}">
-        <i class="bi-list-check" style="font-size:1.2rem;color:grey;width:32px;"></i>{{$group->name}}
+        <i class="bi-list-check" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i>{{$group->name}}
       </a>
       <ul class="c-sidebar-nav-dropdown-items">
         @foreach ($group->checklists as $checklist)
@@ -46,7 +46,7 @@
     @endforeach
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
       <a class="c-sidebar-nav-link" href="{{ route('admin.pages.index')}}">
-        <i class="bi-layout-text-window-reverse" style="font-size:1.2rem;color:grey;width:32px;"></i>Sites
+        <i class="bi-layout-text-window-reverse" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i>Sites
       </a>
     </li>
 
@@ -54,19 +54,25 @@
     <li class="c-sidebar-nav-title">Extras</li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
       <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-        <i class="bi-puzzle" style="font-size:1.2rem;color:grey;width:32px;"></i> Base</a>
+        <!-- ---------------------------------------------------------------------------------------------------------------------------------BASE -->
+        <i class="bi-puzzle" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i> Base</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/tooltips.html"><span class="c-sidebar-nav-icon"></span> Tooltips</a></li>
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link"
-            href="{{ route('admin.checklist_groups.create') }}"><span class="c-sidebar-nav-icon"></span>{{ __('Create Checklist')}}</a>
+            href="{{ route('admin.checklist_groups.create') }}"><span class="c-sidebar-nav-icon"></span>
+            <i class="bi-card-checklist" style="font-size:1.2rem;color:grey;width:32px;"></i> {{ __('Create Checklist')}}</a>
+        </li>
+        <li class="c-sidebar-nav-item">
+          <a class="c-sidebar-nav-link"
+            href="/admin/logfiles"><span class="c-sidebar-nav-icon"></span>
+            <i class="bi-card-list" style="font-size:1.2rem;color:grey;width:32px;"></i> {{ __('Logs')}}</a>
         </li>
       </ul>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
       <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
-        <i class="bi-star" style="font-size:1.2rem;color:grey;width:32px;"></i> Pages</a>
+        <!-- -----------------------------------------------------------------------------------------------------------------------------------Pages -->
+        <i class="bi-star" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i> Pages</a>
       <ul class="c-sidebar-nav-dropdown-items">
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link" href="login.html" target="_top">
@@ -85,10 +91,6 @@
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link" href="404.html" target="_top">
             <i class="bi-bug" style="font-size:1.2rem;color:grey;width:32px;"></i> Error 404</a>
-        </li>
-        <li class="c-sidebar-nav-item">
-          <a class="c-sidebar-nav-link" href="500.html" target="_top">
-            <i class="bi-bug" style="font-size:1.2rem;color:grey;width:32px;"></i> Error 500</a>
         </li>
       </ul>
     <!-- </li>
