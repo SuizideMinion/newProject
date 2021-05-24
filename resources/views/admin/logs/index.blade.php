@@ -3,8 +3,14 @@
 <div class="container-fluid">
   <div class="fade-in">
     <div class="card">
-      <div class="card-header">Users</div>
       <div class="card-body">
+        <ul class="nav nav-tabs">
+          <li class="nav-item"><a class="nav-link @if($group=='check') active @endif" href="/admin/logfiles/check">Checklist</a></li>
+          <li class="nav-item"><a class="nav-link @if($group=='cheGr') active @endif" href="/admin/logfiles/cheGr">CheckGroup</a></li>
+          <li class="nav-item"><a class="nav-link @if($group=='Page') active @endif" href="/admin/logfiles/Page">Page</a></li>
+          <li class="nav-item"><a class="nav-link @if($group=='user') active @endif" href="/admin/logfiles/user">User</a></li>
+          <li class="nav-item"><a class="nav-link @if($group=='all') active @endif" href="/admin/logfiles/">All</a></li>
+        </ul>
         <ul class="group" wire:sortable="updateTaskOrder"  style="padding-left: 20px;padding-right: 20px;padding-top: 20px;">
           @foreach ($logs as $log)
               <li class="list-group-item d-flex list-group-item-action justify-content-between align-items-center list-group-item-success"
@@ -29,14 +35,12 @@
           @endforeach
       </ul>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" style="margin:auto;">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="/admin/logfiles/check">Check</a></li>
-        <li class="page-item"><a class="page-link" href="/admin/logfiles/cheGr">cheGr</a></li>
-        <li class="page-item"><a class="page-link" href="/admin/logfiles/Page">Page</a></li>
-        <li class="page-item"><a class="page-link" href="/admin/logfiles/user">User</a></li>
-        <li class="page-item"><a class="page-link" href="/admin/logfiles">all</a></li>
-
+        {{ $logs->links() }}
+        <!-- <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li> -->
       </ul>
     </div>
   </div>

@@ -64,7 +64,7 @@
         </li>
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link"
-            href="/admin/logfiles"><span class="c-sidebar-nav-icon"></span>
+            href="/admin/logfiles/"><span class="c-sidebar-nav-icon"></span>
             <i class="bi-card-list" style="font-size:1.2rem;color:grey;width:32px;"></i> {{ __('Logs')}}</a>
         </li>
       </ul>

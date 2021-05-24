@@ -2,19 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::redirect('/', 'welcome');
-
 Auth::routes();
 
 Route::get('/', function () {
@@ -38,6 +25,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('checklist_groups.checklists', \App\Http\Controllers\Admin\ChecklistController::class);
         Route::resource('checklists.tasks', \App\Http\Controllers\Admin\TaskController::class);
         Route::resource('users', \App\Http\Controllers\Admin\users\UserController::class);
-        Route::resource('logfiles/{offset}', \App\Http\Controllers\Admin\LogController::class)->where('offset', '[0-9]+?');
+        Route::resource('logfiles/{group?}', \App\Http\Controllers\Admin\LogController::class);
+        // Route::get('logfiles/{offset?}', [\App\Http\Controllers\Admin\LogController::class, "index"])->where('offset', '[1-9]\d*');
     });
 });
