@@ -12,21 +12,21 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index($id = '@')
     {
-        $users = User::all();
-        $buchstaben = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Ä Ü Ö ß all";
+        $users = User::orderBy('name', 'asc')->paginate(15);
+        $buchstaben = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ß @";
         $array = explode(" ", $buchstaben);
         $arrays = [];
         foreach ($array as $key) {
-          if($key != "all") $counter = User::where('name','LIKE',"{$key}%")->count();
+          if($key != "@") $counter = User::where('name','LIKE',"{$key}%")->count();
           else $counter = User::all()->count();
           array_push($arrays, $counter);
         }
-        return view('admin.users.index', compact('users', 'arrays', 'array'));
+        return view('admin.users.index', compact('users', 'arrays', 'array', 'id'));
     }
 
-    public function update(UpdateUserRequest $request, $usr)
+    public function updateBanReason(UpdateUserRequest $request, $usr)
     {
       //dd($request->validated()['reason']);
       $banuser = DB::table('users')->where('id', $usr)->first();
@@ -40,17 +40,17 @@ class UserController extends Controller
 
     public function show($id)
     {
-          if($id != "all") $users = User::where('name','LIKE',"{$id}%")->get();
+          if($id != "@") $users = User::where('name','LIKE',"{$id}%")->paginate(15);
           else $users = User::all();
-          $buchstaben = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z Ä Ü Ö ß all";
+          $buchstaben = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ß @";
           $array = explode(" ", $buchstaben);
           $arrays = [];
           foreach ($array as $key) {
-            if($key != "all") $counter = User::where('name','LIKE',"{$key}%")->count();
+            if($key != "@") $counter = User::where('name','LIKE',"{$key}%")->count();
             else $counter = User::all()->count();
             array_push($arrays, $counter);
           }
-          return view('admin.users.index', compact('users', 'arrays', 'array'));
+          return view('admin.users.index', compact('users', 'arrays', 'array', 'id'));
     }
 
     public function destroy($usr)
@@ -61,5 +61,17 @@ class UserController extends Controller
           'closed' => '1'
           ]);
           return redirect()->route('admin.users.index');
+    }
+
+    public function unlockUser($usr)
+    {
+        $banuser = DB::table('users')->where('id', $usr)->first();
+        DB::table('logs')->insert(array ('category' => 'user','created_at' => Carbon::now(), 'text' => "Hat ". $banuser->name ." Entbannt ",'owner' => Auth::id()));
+        User::where('id', $usr)->update([
+          'closed' => '0',
+          'reason' => '0'
+        ]);
+
+        return redirect()->route('admin.users.index');
     }
 }

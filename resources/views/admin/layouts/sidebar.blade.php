@@ -8,9 +8,13 @@
     <li class="c-sidebar-nav-item">
       <a class="c-sidebar-nav-link" href="index.html">
         <i class="bi-clipboard-data" style="margin-right: 20px;font-size:1.5rem;color:grey;width:32px;"></i>Dashboard
-        <!--<span class="badge badge-info">NEW</span>-->
       </a>
     </li>
+      <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" href="/chats/68287fc94fb4aa98ea86f452ababae2e">
+          <i class="bi-clipboard-data" style="margin-right: 20px;font-size:1.5rem;color:grey;width:32px;"></i>Chat
+        </a>
+      </li>
     <li class="c-sidebar-nav-title">Admin</li>
 
 
@@ -64,7 +68,7 @@
         </li>
         <li class="c-sidebar-nav-item">
           <a class="c-sidebar-nav-link"
-            href="/admin/logfiles/"><span class="c-sidebar-nav-icon"></span>
+            href="/admin/logfiles/all"><span class="c-sidebar-nav-icon"></span>
             <i class="bi-card-list" style="font-size:1.2rem;color:grey;width:32px;"></i> {{ __('Logs')}}</a>
         </li>
       </ul>

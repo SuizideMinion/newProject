@@ -38,9 +38,6 @@
     <div class="card-footer" style="margin:auto;">
       <ul class="pagination">
         {{ $logs->links() }}
-        <!-- <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li> -->
       </ul>
     </div>
   </div>
