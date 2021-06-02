@@ -45,19 +45,19 @@
             @endif
             @if($dog['category'] == 'FIRST')
                 <div class="collapse" id="collapse{{ $id }}" role="tabpanel" aria-labelledby="heading{{ $id }}" data-parent="#accordion" style="">
-                  <div class="card-body">{{ $dog['name'] }}</div>
+                  <div class="card-body" style="margin-top: 0px !important;">{{ $dog['name'] }}</div>
             @endif
             @if($dog['category'] == 'NEXT')
-                  <div class="card-body">{{ $dog['name'] }}</div>
+                  <div class="card-body" style="margin-top: 0px !important;">{{ $dog['name'] }}</div>
             @endif
             @if($dog['category'] == 'LAST')
-                  <div class="card-body">{{ $dog['name'] }}</div>
+                  <div class="card-body" style="margin-top: 0px !important;">{{ $dog['name'] }}</div>
                 </div>
               </div>
             @endif
             @if($dog['category'] == 'OWN')
                 <div class="collapse" id="collapse{{ $id }}" role="tabpanel" aria-labelledby="heading{{ $id }}" data-parent="#accordion" style="">
-                  <div class="card-body">{{ $dog['name'] }}</div>
+                  <div class="card-body" style="margin-top: 0px !important;">{{ $dog['name'] }}</div>
                 </div>
               </div>
             @endif

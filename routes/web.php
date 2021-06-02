@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('logfiles/{group}', [App\Http\Controllers\Admin\LogController::class, 'index']);
         Route::get('logfiles/', [App\Http\Controllers\Admin\LogController::class, 'index']);
         Route::resource('dogs', \App\Http\Controllers\DogsController::class);
+        Route::resource('menuitem', \App\Http\Controllers\MenuItemController::class);
+        Route::resource('submenuitem', \App\Http\Controllers\SubMenuItemsController::class);
 
       });
     });

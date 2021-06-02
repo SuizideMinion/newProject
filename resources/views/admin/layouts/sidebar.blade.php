@@ -53,6 +53,11 @@
         <i class="bi-layout-text-window-reverse" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i>Sites
       </a>
     </li>
+    <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+      <a class="c-sidebar-nav-link" href="{{ route('admin.menuitem.index')}}">
+        <i class="bi-layout-text-window-reverse" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i>Navigation
+      </a>
+    </li>
 
     <li class="c-sidebar-nav-divider"></li>
     <li class="c-sidebar-nav-title">Extras</li>
