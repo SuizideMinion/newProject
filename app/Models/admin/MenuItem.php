@@ -22,4 +22,8 @@ class MenuItem extends Model
     {
       return $this->hasMany('App\Models\admin\SubMenuItem')->where('status', '1');
     }
+    public function submenusadmin()
+    {
+      return $this->hasMany('App\Models\admin\SubMenuItem');
+    }
 }

@@ -10,7 +10,11 @@
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >{{ $MenuItem->name }} ▼</a>
               <div class="dropdown-menu dropdown-menu-right pt-0">
                 @foreach ($MenuItem->submenus as $SubMenu)
-                <a class="dropdown-item" href="{{ $SubMenu->link }}">{{ $SubMenu->name }}</a>
+                  @if ( $SubMenu->link == "---" )
+                  <div class="dropdown-header bg-light py-2"><strong>{{ $SubMenu->name }}</strong></div>
+                  @else
+                  <a class="dropdown-item" href="{{ $SubMenu->link }}">{{ $SubMenu->name }}</a>
+                  @endif
                 @endforeach
               </div>
             </li>

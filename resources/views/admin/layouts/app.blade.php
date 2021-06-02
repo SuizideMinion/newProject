@@ -52,7 +52,18 @@
             <i class="bi-envelope-open" style="font-size:1.2rem;color:grey;width:32px;"></i>
           </a>
         </li>
-        <li class="c-header-nav-item dropdown">
+
+        <li class="c-header-nav-item d-md-down-none mx-2">
+          <a class="c-header-nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+            <i class="bi-door-closed" style="font-size:1.2rem;color:grey;width:32px;"></i>
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+          </form>
+        </li>
+        <!-- ---------------------------- TODO:: Profile ansicht ?? brauchen wa jetzt nicht -->
+        <!-- <li class="c-header-nav-item dropdown">
           <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
             <div class="c-avatar"><img class="c-avatar-img" src="/img/no_img.png" alt="user@email.com"></div>
           </a>
@@ -81,9 +92,10 @@
             <a class="dropdown-item" href="#">
               <i class="bi-door-closed" style="font-size:1.2rem;color:grey;width:32px;"></i> Logout</a>
           </div>
-        </li>
-      <!-- </ul>
-      <div class="c-subheader px-3">
+        </li>-->
+      </ul>
+      <!-- ---------------------------- TODO:: 2. Zeile Navigation brauchen wa jetzt auch nicht -->
+      <!-- <div class="c-subheader px-3">
 
         <ol class="breadcrumb border-0 m-0">
           <li class="breadcrumb-item">Home</li>
@@ -92,6 +104,7 @@
 
         </ol>
       </div> -->
+
     </header>
 
     <div class="c-body">

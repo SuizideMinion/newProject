@@ -54,13 +54,18 @@
                   <i class="bi-star" style="font-size: 15px;color:green;" title="Createt by"></i> {{ auth()->user($page->owner)->name }}
                   <i class="bi-pencil-fill" style="font-size: 15px;color:green;margin-left:10px" title="Last Chance by"></i> {{ auth()->user($page->last_edit_from)->name }}
                   <a style="margin-left: auto!important;" href="/admin/pages/{{ $page->id }}/edit" data-toggle="collapse" data-target="#{{ $page->id }}">
-                     <i class="bi-pencil" style="font-size: 15px;color:green;"></i>
-                  </a><form action="{{ route('admin.pages.destroy', $page) }}" method="POST">
+                     <i class="bi-pencil" style="margin-right: 10px;font-size: 15px;color:green;"></i>
+                  </a>
+                  <a style="" href="/admin/pages/" data-toggle="collapse" data-target="#{{ $page->id }}" title="Create Navigation">
+                     <i class="bi-chevron-compact-down" style="margin-right: 10px;font-size: 15px;color:green;"></i>
+                  </a>
+                  <a style="" href="/admin/pages/" data-toggle="collapse" data-target="#{{ $page->id }}" title="Create SubNavigation">
+                    <i class="bi-chevron-double-down" style="margin-right: 10px;font-size: 15px;color:green;"></i>
+                  </a>
+                    <form action="{{ route('admin.pages.destroy', $page) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button style="padding-top: 0px;padding-bottom: 0px;" class="btn btn-text" type="submit">
-                      <i class="bi-trash" style="font-size: 15px;color:red;"></i>
-                    </button>
+                    <button style="padding: 0px;" class="btn btn-text" type="submit" onclick="return confirm('{{ __('Are you Sure') }}')"><i class="bi-trash" style="font-size: 15px;color:red;"></i></button>
                   </form>
                 </div>
               </li>
