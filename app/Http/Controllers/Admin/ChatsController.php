@@ -15,8 +15,8 @@ class ChatsController extends Controller
      */
     public function index($channel)
     {
-        if ( isset($_GET['view'])) $view = 'admin.layouts.app';
-        else $view = 'layouts.app';
+        if ( isset($_GET['view'])) $view = $_GET['view'];
+        else $view = '';
         $chats = Chat::where('channel',$channel)->orderBy('created_at', 'ASC')->get();
         //dd($chats);
         return view('admin.chat.index', compact('chats', 'view', 'channel'));

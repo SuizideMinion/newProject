@@ -29,7 +29,15 @@
                             <label for="link" class="col-md-4 col-form-label text-md-right">{{ __('Link') }}</label>
 
                             <div class="col-md-6">
-                                <input id="link" type="link" class="form-control @error('link') is-invalid @enderror" name="link" value="{{ old('link') }}" required autocomplete="link">
+                                <input
+                                  id="link"
+                                  type="link"
+                                  class="form-control @error('link') is-invalid @enderror"
+                                  name="link"
+                                  value="{{old('link')}}@if(isset($_GET['link'])){{$_GET['link']}}@endif"
+                                  required
+                                  autocomplete="link"
+                                >
 
                                 @error('link')
                                     <span class="invalid-feedback" role="alert">

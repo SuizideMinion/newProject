@@ -13,14 +13,14 @@
                   @if ( $SubMenu->link == "---" )
                   <div class="dropdown-header bg-light py-2"><strong>{{ $SubMenu->name }}</strong></div>
                   @else
-                  <a class="dropdown-item" href="{{ $SubMenu->link }}">{{ $SubMenu->name }}</a>
+                  <a class="dropdown-item" href="@if($SubMenu->target==1)/@endif{{ $SubMenu->link }}">{{ $SubMenu->name }}</a>
                   @endif
                 @endforeach
               </div>
             </li>
             @else
             <li class="nav-item">
-              <a class="nav-link" href="{{ $MenuItem->link }}">{{ $MenuItem->name }}</a>
+              <a class="nav-link" href="@if($MenuItem->target==1)/@endif{{ $MenuItem->link }}">{{ $MenuItem->name }}</a>
             </li>
             @endif
           @endforeach
@@ -70,7 +70,7 @@
                 <i class="bi-lock" style="font-size:1.2rem;color:grey;width:32px;"></i> Lock Account</a> -->
 
                   @foreach (\App\Models\admin\MenuItem::where('status', '1')->where('menu', '4')->get() as $MenuItem)
-                  <a class="dropdown-item" href="{{ $MenuItem->link }}">
+                  <a class="dropdown-item" href="@if($MenuItem->target==1)/@endif{{ $MenuItem->link }}">
                     <i class="bi-{{ $MenuItem->icon }}" style="font-size:1.2rem;color:grey;width:32px;"></i> {{ $MenuItem->name }}
                     <!-- <span class="badge badge-primary ml-auto">42</span> -->
                   </a>

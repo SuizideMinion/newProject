@@ -1,4 +1,4 @@
-@extends($view)
+@extends($view.'.layouts.app')
 @section('content')
 <div class="container-fluid">
   <div class="fade-in">

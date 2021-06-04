@@ -8,7 +8,7 @@ Route::get('/', function () {
   return view('welcome');
 });
 
-Route::get('getsite/{seitenid}', [App\Http\Controllers\ShowPage::class, "showmarkdown"])->name("das_ist_test");
+Route::get('s/{seitenid}', [App\Http\Controllers\ShowPage::class, "showmarkdown"])->name("das_ist_test");
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dog', [\App\Http\Controllers\DogsController::class, 'public']);
 

@@ -23,16 +23,21 @@
                 <tr>
                   <th>name</th>
                   <th>link</th>
-                  <th>menu</th>
-                  <th>icon</th>
-                  <th>options</th>
+                  <th></th>
+                  <th></th>
+                  <th width="20px"></th>
+                  <th width="20px"></th>
+                  <th width="20px"></th>
+                  <th width="20px"></th>
+                  <th width="20px"></th>
+                  <th width="20px"></th>
+                  <th width="20px"></th>
                 </tr>
               </thead>
             @endif
-            <tbody>
             <tr>
               <td>{{ $MenuItem->name }}</td>
-              <td>{{ $MenuItem->link }}</td>
+              <td>@if(strlen($MenuItem->link) <= '40'){{ $MenuItem->link }}@else{{substr($MenuItem->link,0,40)}}...@endif</td>
               <td>
                 @if($MenuItem->menu == '1')
                 <i class="bi-arrow-up-left-square" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i>
@@ -45,7 +50,7 @@
                 @endif
               </td>
               <td><i class="bi-{{ $MenuItem->icon }}" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i></td>
-              <td style="display:flex;">
+              <td>
                 @if ( $MenuItem->status == 1 )
                 <form action="{{ route('admin.menuitem.update', $MenuItem->id) }}" method="POST">
                   @csrf
@@ -67,31 +72,64 @@
                   </button>
                 </form>
                 @endif
-                <a style="margin-left: auto!important;" href="/admin/menuitem/{{ $MenuItem->id }}/edit" data-toggle="collapse" data-target="#{{ $MenuItem->id }}">
-                   <i class="bi-pencil" style="margin-right: 10px;font-size: 15px;color:green;"></i>
+              </td>
+              <td></td>
+              <td></td>
+              <td>
+                <a style="margin-left: auto!important;" href="/admin/menuitem/{{ $MenuItem->id }}/edit" title="Navigation Bearbeiten">
+                   <i class="bi-pencil" style="font-size: 15px;color:green;"></i>
                 </a>
-                <form action="{{ route('admin.submenuitem.create', $MenuItem->id) }}" method="GET">
-                  @csrf
-                  <input type="hidden" name="menu_item_id" value="{{ $MenuItem->id }}">
-                  <button style="padding: 0px;" class="btn btn-text" type="submit"><i class="bi-bookmark-plus" style="font-size: 15px;color:green;"></i></button>
-                </form>
+              </td>
+              <td>
+                @if($MenuItem->menu == 3)
+                  <form action="{{ route('admin.submenuitem.create', $MenuItem->id) }}" method="GET">
+                    @csrf
+                    <input type="hidden" name="menu_item_id" value="{{ $MenuItem->id }}">
+                    <button style="padding: 0px;" class="btn btn-text" type="submit" title="SubMenu Anlegen"><i class="bi-bookmark-plus" style="font-size: 15px;color:green;"></i></button>
+                  </form>
+                @endif
+              </td>
+              <td>
+                @if (count($MenuItem->submenusadmin) > 0)
+                <a href="#" onclick="showhide('tr{{$MenuItem->id}}'); return false;" title="Submenus Anzeigen">
+                  <i class="bi-box-arrow-down" style="font-size: 15px;color:green;"></i>
+                </a>
+                <script>
+                function showhide (id)
+                {
+                  obj = document.getElementById(id);
+                  var displayStyle = obj.currentStyle ? obj.currentStyle.display :
+                  getComputedStyle(obj, null).display;
+                  if (displayStyle == 'none' || displayStyle == null)
+                  obj.style.display  = 'contents';
+                  else
+                  obj.style.display  = 'none';
+                }
+                </script>
+                @endif
+              </td>
+              <td>
                 <form action="{{ route('admin.menuitem.destroy', $MenuItem->id) }}" method="POST">
                   @csrf
                   @method('DELETE')
-                  <button style="padding: 0px;" class="btn btn-text" type="submit" onclick="return confirm('{{ __('Are you Sure') }}')"><i class="bi-trash" style="font-size: 15px;color:red;"></i></button>
+                  <button style="padding: 0px;" class="btn btn-text" type="submit" title="Navigation Löschen" onclick="return confirm('{{ __('Are you Sure') }}')">
+                    <i class="bi-trash" style="font-size: 15px;color:red;"></i>
+                  </button>
                 </form>
+
               </td>
             </tr>
             @if (count($MenuItem->submenusadmin) > 0)
                 <? $c = 0; ?>
+                <tbody id="tr{{$MenuItem->id}}" style="display:none">
                 @foreach ($MenuItem->submenusadmin as $SubMenu)
                   <? $c++; ?>
                   <tr id="Nav{{ $MenuItem->id }}" style="">
-                    <td>SUB: {{ $SubMenu->name }}</td>
+                    <td><i class="bi-arrow-return-right" style="font-size:1.2rem;color:grey;width:32px;"></i>{{ $SubMenu->name }}</td>
                     <td>{{ $SubMenu->link }}</td>
                     <td></td>
                     <td><i class="bi-{{ $SubMenu->icon }}" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i></td>
-                    <td style="display:flex;">
+                    <td>
                       @if ( $SubMenu->status == 1 )
                       <form action="{{ route('admin.submenuitem.update', $MenuItem->id) }}" method="POST">
                         @csrf
@@ -113,6 +151,8 @@
                         </button>
                       </form>
                       @endif
+                    </td>
+                    <td>
                       @if( $c != '1' AND $c <= ( count($MenuItem->submenusadmin) ) )
                       <form action="{{ route('admin.submenuitem.update', $MenuItem->id) }}" method="POST">
                         @csrf
@@ -125,6 +165,8 @@
                         </button>
                       </form>
                       @endif
+                    </td>
+                    <td>
                       @if( $c <= ( count($MenuItem->submenusadmin) - 1) )
                         <form action="{{ route('admin.submenuitem.update', $MenuItem->id) }}" method="POST">
                           @csrf
@@ -136,21 +178,27 @@
                           </button>
                         </form>
                       @endif
-                      <a style="margin-left: auto!important;" href="/admin/submenuitem/{{ $SubMenu->id }}/edit" data-toggle="collapse" data-target="#{{ $SubMenu->id }}">
-                         <i class="bi-pencil" style="margin-right: 10px;font-size: 15px;color:green;"></i>
+                    </td>
+                    <td>
+                      <a style="margin-left: auto!important;" href="/admin/submenuitem/{{ $SubMenu->id }}/edit" title="Navigation Bearbeiten">
+                         <i class="bi-pencil" style="font-size: 15px;color:green;"></i>
                       </a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
                       <form action="{{ route('admin.submenuitem.destroy', $SubMenu->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button style="padding: 0px;" class="btn btn-text" type="submit" onclick="return confirm('{{ __('Are you Sure') }}')"><i class="bi-trash" style="font-size: 15px;color:red;"></i></button>
+                        <button style="padding: 0px;" class="btn btn-text" type="submit" title="Navigation Löschen" onclick="return confirm('{{ __('Are you Sure') }}')"><i class="bi-trash" style="font-size: 15px;color:red;"></i></button>
                       </form>
                     </td>
                   </tr>
                 @endforeach
+              </tbody>
             @endif
             <? $bevore = $MenuItem->menu ?>
             @endforeach
-          </tbody>
         </table>
       </div>
     </div>

@@ -29,7 +29,15 @@
                             <label for="link" class="col-md-4 col-form-label text-md-right">{{ __('Link') }}</label>
 
                             <div class="col-md-6">
-                                <input id="link" type="link" class="form-control @error('link') is-invalid @enderror" name="link" value="{{ old('link') }}" required autocomplete="link">
+                                  <input
+                                    id="link"
+                                    type="link"
+                                    class="form-control @error('link') is-invalid @enderror"
+                                    name="link"
+                                    value="{{old('link')}}@if(isset($_GET['link'])){{$_GET['link']}}@endif"
+                                    required
+                                    autocomplete="link"
+                                  >
                                 Einen Trenner kann man mit --- einfügen
 
                                 @error('link')
@@ -108,8 +116,10 @@
                                   <option value="0">Please select</option>
                                   @foreach (\App\Models\admin\MenuItem::where('status', '1')->get() as $MenuItem)
                                   <option value="{{ $MenuItem->id }}"
-                                    @if($MenuItem->id == $_GET['menu_item_id'])
-                                    selected
+                                    @if(isset($_GET['menu_item_id']))
+                                      @if($MenuItem->id == $_GET['menu_item_id'])
+                                      selected
+                                      @endif
                                     @endif
                                   >{{ $MenuItem->name }}</option>
                                   @endforeach

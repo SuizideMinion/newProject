@@ -56,12 +56,21 @@
                   <a style="margin-left: auto!important;" href="/admin/pages/{{ $page->id }}/edit" data-toggle="collapse" data-target="#{{ $page->id }}">
                      <i class="bi-pencil" style="margin-right: 10px;font-size: 15px;color:green;"></i>
                   </a>
-                  <a style="" href="/admin/pages/" data-toggle="collapse" data-target="#{{ $page->id }}" title="Create Navigation">
-                     <i class="bi-chevron-compact-down" style="margin-right: 10px;font-size: 15px;color:green;"></i>
-                  </a>
-                  <a style="" href="/admin/pages/" data-toggle="collapse" data-target="#{{ $page->id }}" title="Create SubNavigation">
-                    <i class="bi-chevron-double-down" style="margin-right: 10px;font-size: 15px;color:green;"></i>
-                  </a>
+
+                  <form action="{{ route('admin.menuitem.create', $page->navigation) }}" method="GET">
+                    @csrf
+                    <input type="hidden" name="link" value="s/{{ $page->navigation }}">
+                    <button style="padding: 0px;" class="btn btn-text" type="submit">
+                      <i class="bi-chevron-compact-down" style="font-size: 15px;color:green;"></i>
+                    </button>
+                  </form>
+                  <form action="{{ route('admin.submenuitem.create', $page->navigation) }}" method="GET">
+                    @csrf
+                    <input type="hidden" name="link" value="s/{{ $page->navigation }}">
+                    <button style="padding: 0px;" class="btn btn-text" type="submit">
+                      <i class="bi-chevron-double-down" style="font-size: 15px;color:green;"></i>
+                    </button>
+                  </form>
                     <form action="{{ route('admin.pages.destroy', $page) }}" method="POST">
                     @csrf
                     @method('DELETE')

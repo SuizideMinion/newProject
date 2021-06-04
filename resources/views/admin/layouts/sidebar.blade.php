@@ -16,7 +16,7 @@
 
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
       <a class="c-sidebar-nav-link" href="{{ route('admin.pages.index')}}">
-        <i class="bi-layout-text-window-reverse" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i>Sites
+        <i class="bi-file-earmark" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i>Sites
       </a>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
@@ -44,7 +44,7 @@
           <i class="bi-puzzle" style="margin-right: 20px;font-size:1.2rem;color:grey;width:32px;"></i> Base</a>
           <ul class="c-sidebar-nav-dropdown-items">
             <li class="c-sidebar-nav-item">
-              <a class="c-sidebar-nav-link" href="/chats/68287fc94fb4aa98ea86f452ababae2e">
+              <a class="c-sidebar-nav-link" href="/chats/68287fc94fb4aa98ea86f452ababae2e?view=admin">
                 <i class="bi-chat" style="margin-right: 20px;font-size:1.5rem;color:grey;width:32px;"></i>Chat
               </a>
             </li>
