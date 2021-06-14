@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace app\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Models\admin\MenuItem;
-use App\Http\Requests\StoreMenuItemRequest;
+use app\Models\admin\MenuItem;
+use app\Http\Requests\StoreMenuItemRequest;
 
 class MenuItemController extends Controller
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace app\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use app\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\admin\Log;
-use App\User;
+use app\Models\admin\Log;
+use app\User;
 use Illuminate\Support\Facades\DB;
 
 class LogController extends Controller

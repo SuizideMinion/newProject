@@ -28,7 +28,14 @@
                 <label for="navigation">Naviagtion</label>
                 <input value="{{ $page->navigation }}" class="form-control" name="navigation" type="text">
                 <label for="navigation">Inhalt</label>
-                <textarea name="markdowntext" rows="8" style="width:100%;">{{ $page->markdowntext }}</textarea>
+                <div class="row" id="markdown-with-preview">
+                  <div class="col">
+                    <textarea data-input name="markdowntext" rows="8" style="width:100%;height:300px">{{ $page->markdowntext }}</textarea>
+                  </div>
+                  <div class="col">
+                    <div data-output style="max-height: 300px;overflow-y: auto;"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

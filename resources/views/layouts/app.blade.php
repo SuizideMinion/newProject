@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="1.Pfälzer Rassezuchtverein e.V.">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- CoreUI CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css" crossorigin="anonymous">
@@ -21,7 +23,6 @@
       }
   }
   </style>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <title>{{ config('app.name', 'Laravel') }}</title>
   @livewireStyles
 </head>
@@ -33,6 +34,7 @@
     <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
     @include('layouts.header')
     @include('layouts.navigation')
+    @yield('subheader')
     </header>
 
     <div class="c-body">

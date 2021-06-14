@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace app\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Chat;
+use app\Http\Controllers\Controller;
+use app\Models\Chat;
 use Illuminate\Http\Request;
 
 class ChatsController extends Controller
